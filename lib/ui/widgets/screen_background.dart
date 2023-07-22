@@ -17,9 +17,10 @@ class ScreenBackground extends StatelessWidget {
           height: double.infinity,
           child: SvgPicture.asset(
             AssetsUtils.backgroundSvg,
-            fit: BoxFit.fitHeight,
+            fit: BoxFit.cover,
           ),
         ),
+        SafeArea(child: child)
       ],
     );
   }

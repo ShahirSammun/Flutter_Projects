@@ -22,7 +22,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void navigatorToLogin(){
-    Future.delayed(const Duration(seconds: 3)).then((_){
+    Future.delayed(const Duration(seconds: 4)).then((_){
       Navigator.pushAndRemoveUntil(context,
         MaterialPageRoute(builder: (context)=>const LoginScreen()),
             (route) => false,

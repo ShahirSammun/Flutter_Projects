@@ -33,7 +33,7 @@ class LoginScreen extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(
-                    height: 12,
+                    height: 14,
                   ),
                   const TextField(
                     obscureText: true,
@@ -61,7 +61,7 @@ class LoginScreen extends StatelessWidget {
                       },
                       child: const Text(
                         'Forgot Password?',
-                        style: TextStyle(color: Colors.grey),
+                        style: TextStyle(color: Colors.black),
                       ),
                     ),
                   ),
