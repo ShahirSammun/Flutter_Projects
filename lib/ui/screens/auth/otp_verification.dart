@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_app4/ui/screens/auth/otp_verification.dart';
+import 'package:mobile_app4/ui/screens/auth/login_screen.dart';
+import 'package:mobile_app4/ui/screens/auth/reset_password.dart';
 import 'package:mobile_app4/ui/widgets/screen_background.dart';
+import 'package:pin_code_fields/pin_code_fields.dart';
 
-class EmailVerificationScreen extends StatelessWidget {
-  const EmailVerificationScreen({Key? key}) : super(key: key);
+class OtpVerificationScreen extends StatelessWidget {
+  const OtpVerificationScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +19,7 @@ class EmailVerificationScreen extends StatelessWidget {
               children: [
                 const SizedBox(height: 64,),
                 Text(
-                  'Your email address',
+                  'PIN Verification',
                   style: Theme.of(context).textTheme.titleLarge,
                 ),
                 const SizedBox(height: 4,),
@@ -32,12 +34,36 @@ class EmailVerificationScreen extends StatelessWidget {
                 const SizedBox(
                   height: 24,
                 ),
-                const TextField(
-                  keyboardType: TextInputType.emailAddress,
-                  decoration: InputDecoration(
-                    hintText: 'Email',
+                PinCodeTextField(
+                  length: 6,
+                  obscureText: false,
+                  animationType: AnimationType.fade,
+                  keyboardType: TextInputType.number,
+                  pinTheme: PinTheme(
+                    shape: PinCodeFieldShape.box,
+                    borderRadius: BorderRadius.circular(5),
+                    fieldHeight: 50,
+                    fieldWidth: 40,
+                    inactiveFillColor: Colors.white,
+                    inactiveColor: Colors.red,
+                    activeColor: Colors.white,
+                    selectedColor: Colors.green,
+                    selectedFillColor: Colors.white,
+                    activeFillColor: Colors.white,
                   ),
+                  animationDuration: const Duration(milliseconds: 300),
+                  enableActiveFill: true,
+                  cursorColor: Colors.green,
+                  enablePinAutofill: true,
+                  onCompleted: (v) {},
+                  onChanged: (value) {},
+                  beforeTextPaste: (text) {
+                    print("Allowing to paste $text");
+                    return true;
+                  },
+                  appContext: context,
                 ),
+
                 const SizedBox(
                   height: 16,
                 ),
@@ -45,9 +71,9 @@ class EmailVerificationScreen extends StatelessWidget {
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => OtpVerificationScreen()));
+                      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const ResetPasswordScreen()), (route) => false);
                     },
-                    child: const Icon(Icons.arrow_circle_right_outlined),
+                    child: const Text('Verify'),
                   ),
                 ),
                 const SizedBox(
@@ -62,7 +88,7 @@ class EmailVerificationScreen extends StatelessWidget {
                           fontWeight: FontWeight.w500, letterSpacing: 0.5),
                     ),
                     TextButton(onPressed: () {
-                      Navigator.pop(context);
+                      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const LoginScreen()), (route) => false);
                     }, child: const Text('Sign in')),
                   ],
                 )

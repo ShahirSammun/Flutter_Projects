@@ -4,9 +4,8 @@ import 'package:mobile_app4/ui/utils/assets_utils.dart';
 
 class ScreenBackground extends StatelessWidget {
   final Widget child;
-  const ScreenBackground({super.key, required this.child});
 
-
+  const ScreenBackground({Key? key, required this.child}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +19,7 @@ class ScreenBackground extends StatelessWidget {
             fit: BoxFit.cover,
           ),
         ),
-        SafeArea(child: child)
+        child
       ],
     );
   }

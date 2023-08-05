@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_app4/ui/screens/splash_screen.dart';
 
-class TaskManagerApp extends StatelessWidget {
+class TaskManagerApp extends StatefulWidget {
+  static GlobalKey globalKey = GlobalKey();
   const TaskManagerApp({Key? key}) : super(key: key);
 
+  @override
+  State<TaskManagerApp> createState() => _TaskManagerAppState();
+}
+
+class _TaskManagerAppState extends State<TaskManagerApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

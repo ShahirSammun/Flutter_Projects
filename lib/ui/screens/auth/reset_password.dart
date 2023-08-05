@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_app4/ui/screens/auth/otp_verification.dart';
+import 'package:mobile_app4/ui/screens/auth/login_screen.dart';
 import 'package:mobile_app4/ui/widgets/screen_background.dart';
 
-class EmailVerificationScreen extends StatelessWidget {
-  const EmailVerificationScreen({Key? key}) : super(key: key);
+class ResetPasswordScreen extends StatelessWidget {
+  const ResetPasswordScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,12 +17,12 @@ class EmailVerificationScreen extends StatelessWidget {
               children: [
                 const SizedBox(height: 64,),
                 Text(
-                  'Your email address',
+                  'Set Password',
                   style: Theme.of(context).textTheme.titleLarge,
                 ),
                 const SizedBox(height: 4,),
                 Text(
-                  'A 6 digits pin will sent to your email address',
+                  'Minimum password must be of 8 letters with numbers & symbols',
                   style: Theme.of(context)
                       .textTheme
                       .bodyMedium
@@ -34,8 +34,19 @@ class EmailVerificationScreen extends StatelessWidget {
                 ),
                 const TextField(
                   keyboardType: TextInputType.emailAddress,
+                  obscureText: true,
                   decoration: InputDecoration(
-                    hintText: 'Email',
+                    hintText: 'Password',
+                  ),
+                ),
+                const SizedBox(
+                  height: 16,
+                ),
+                const TextField(
+                  obscureText: true,
+                  keyboardType: TextInputType.emailAddress,
+                  decoration: InputDecoration(
+                    hintText: 'Confirm Password',
                   ),
                 ),
                 const SizedBox(
@@ -44,10 +55,8 @@ class EmailVerificationScreen extends StatelessWidget {
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => OtpVerificationScreen()));
-                    },
-                    child: const Icon(Icons.arrow_circle_right_outlined),
+                    onPressed: () {},
+                    child: const Text('Verify'),
                   ),
                 ),
                 const SizedBox(
@@ -62,7 +71,7 @@ class EmailVerificationScreen extends StatelessWidget {
                           fontWeight: FontWeight.w500, letterSpacing: 0.5),
                     ),
                     TextButton(onPressed: () {
-                      Navigator.pop(context);
+                      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const LoginScreen()), (route) => false);
                     }, child: const Text('Sign in')),
                   ],
                 )
