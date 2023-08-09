@@ -129,7 +129,7 @@ class _InProgressTaskScreenState extends State<InProgressTaskScreen> {
           style: TextStyle(
             color: Colors.black,
             fontWeight: FontWeight.bold,
-            // Set the title text color here
+
           ),
         ),
         content: const Text(
@@ -173,7 +173,7 @@ class _InProgressTaskScreenState extends State<InProgressTaskScreen> {
         content: const Text(
           "Do you want to edit the status of this item?",
           style: TextStyle(
-            color: Colors.black, // Set the content text color here
+            color: Colors.black,
           ),
         ),
         backgroundColor: Colors.white,
