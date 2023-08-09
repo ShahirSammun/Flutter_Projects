@@ -8,6 +8,8 @@ Screenshot Of TaskManager App
 
 ![Screenshot_20230809_192109](https://github.com/ShahirSammun/Task_Manager_Project/assets/135459672/db2159e1-6b1a-4c91-a717-00a01b46bb80)
 
+![Screenshot_20230809_201513](https://github.com/ShahirSammun/Task_Manager_Project/assets/135459672/51b1ff54-9bd4-4116-9c26-848341a81c01)
+
 ![Screenshot_20230809_192151](https://github.com/ShahirSammun/Task_Manager_Project/assets/135459672/2827dcc4-8cdf-4e8e-9044-18826158c50c)
 
 ![Screenshot_20230809_192626](https://github.com/ShahirSammun/Task_Manager_Project/assets/135459672/e7294357-4383-4c2c-b22a-178d14ad6e6f)
@@ -15,3 +17,5 @@ Screenshot Of TaskManager App
 ![Screenshot_20230809_192647](https://github.com/ShahirSammun/Task_Manager_Project/assets/135459672/f2cfef2b-ffe8-4e72-ba7d-2f880494a12f)
 
 ![Screenshot_20230809_192706](https://github.com/ShahirSammun/Task_Manager_Project/assets/135459672/554373bc-c576-49b9-a72c-3f959236bc35)
+
+![Screenshot_20230809_193811](https://github.com/ShahirSammun/Task_Manager_Project/assets/135459672/f6d1b46b-1b76-4431-98ca-69632a615c7d)
