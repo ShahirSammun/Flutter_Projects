@@ -1,21 +1,22 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_app4/data/models/auth_utility.dart';
 import 'package:mobile_app4/ui/screens/auth/login_screen.dart';
 import 'package:mobile_app4/ui/screens/update_profile.dart';
 
-class UserProfileBanner extends StatefulWidget {
+class UserProfileAppBar extends StatefulWidget {
   final bool? isUpdateScreen;
 
-  const UserProfileBanner({
+  const UserProfileAppBar({
     super.key,
     this.isUpdateScreen,
   });
 
   @override
-  State<UserProfileBanner> createState() => _UserProfileBannerState();
+  State<UserProfileAppBar> createState() => _UserProfileAppBarState();
 }
 
-class _UserProfileBannerState extends State<UserProfileBanner> {
+class _UserProfileAppBarState extends State<UserProfileAppBar> {
   @override
   Widget build(BuildContext context) {
     return AppBar(
@@ -31,25 +32,26 @@ class _UserProfileBannerState extends State<UserProfileBanner> {
         },
         child: Row(
           children: [
-            Visibility(
-              visible: (widget.isUpdateScreen ?? false) == false,
-              child: Row(
-                children: [
-                  CircleAvatar(
-                    backgroundImage: NetworkImage(
-                      AuthUtility.userInfo.data?.photo ?? '',
-                    ),
-                    onBackgroundImageError: (_, __) {
-                      const Icon(Icons.image);
-                    },
-                    radius: 15,
-                  ),
+        Row(
+        children: [
+        ClipOval(
+        child: Container(
+          color: Colors.white,
+          child: CachedNetworkImage(
+            placeholder: (_, __) =>
+                Image.asset('assets/images/1916172.jpg', width: 30),
+            imageUrl: AuthUtility.userInfo.data?.photo ?? '',
+            errorWidget: (_, __, ___) =>
+                Image.asset('assets/images/1916172.jpg', width: 30),
+          ),
+        ),
+      ),
                   const SizedBox(
                     width: 16,
                   ),
                 ],
               ),
-            ),
+
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

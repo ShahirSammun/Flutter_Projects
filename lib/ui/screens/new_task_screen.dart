@@ -9,7 +9,7 @@ import 'package:mobile_app4/ui/screens/update_task_status_sheet.dart';
 import 'package:mobile_app4/ui/widgets/screen_background.dart';
 import 'package:mobile_app4/ui/widgets/summary_card.dart';
 import 'package:mobile_app4/ui/widgets/task_list_tile.dart';
-import 'package:mobile_app4/ui/widgets/user_profile_banner.dart';
+import 'package:mobile_app4/ui/widgets/user_profile_appbar.dart';
 import 'update_task_bottom_sheet.dart';
 
 class NewTaskScreen extends StatefulWidget {
@@ -67,7 +67,7 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
     } else {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Summary data get failed')));
+            const SnackBar(content: Text('Summary data got failed')));
       }
     }
     _getNewTaskInProgress = false;
@@ -87,18 +87,17 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
     } else {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Deletion of task has been failed')));
+            const SnackBar(content: Text('Deletion of the task has failed')));
       }
     }
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: ScreenBackground(
         child: Column(
           children: [
-            const UserProfileBanner(),
+            const UserProfileAppBar(),
             _getCountSummaryInProgress
                 ? const LinearProgressIndicator()
                 : Padding(
@@ -127,6 +126,7 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
               child: RefreshIndicator(
                 onRefresh: () async {
                   getNewTasks();
+                  getCountSummary();
                 },
                 child: _getNewTaskInProgress
                     ? const Center(

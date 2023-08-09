@@ -10,6 +10,7 @@ import 'package:mobile_app4/ui/screens/auth/login_screen.dart';
 class NetworkCaller {
   Future<NetworkResponse> getRequest(String url) async {
     try {
+      log(url);
       Response response = await get(Uri.parse(url),
           headers: {'token': AuthUtility.userInfo.token.toString()});
       log(response.statusCode.toString());
@@ -31,6 +32,7 @@ class NetworkCaller {
   Future<NetworkResponse> postRequest(String url, Map<String, dynamic> body,
       {bool isLogin = false}) async {
     try {
+      log(body.toString());
       Response response = await post(
         Uri.parse(url),
         headers: {
@@ -48,7 +50,7 @@ class NetworkCaller {
           jsonDecode(response.body),
         );
       } else if (response.statusCode == 401) {
-        if (isLogin) {
+        if (isLogin == false) {
           gotoLogin();
         }
       } else {
@@ -62,7 +64,8 @@ class NetworkCaller {
 
   Future<void> gotoLogin() async {
     await AuthUtility.clearUserInfo();
-    Navigator.pushAndRemoveUntil(TaskManagerApp.globalKey.currentContext!,
+    Navigator.pushAndRemoveUntil(
+        TaskManagerApp.globalKey.currentContext!,
         MaterialPageRoute(builder: (context) => const LoginScreen()),
             (route) => false);
   }
