@@ -163,7 +163,7 @@ class _InProgressTaskScreenState extends State<InProgressTaskScreen> {
       context: context,
       builder: (ctx) => AlertDialog(
         title: const Text(
-          "Warning",
+          "Warning!",
           style: TextStyle(
             color: Colors.black,
             fontWeight: FontWeight.bold,

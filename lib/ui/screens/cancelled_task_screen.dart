@@ -60,7 +60,7 @@ class _CancelledTaskScreenState extends State<CancelledTaskScreen> {
       builder: (BuildContext context) {
         return AlertDialog(
           title: const Text(
-            'Deleting...',
+            'Deleting!',
             style: TextStyle(fontSize: 23, fontWeight: FontWeight.normal),
           ),
           content: const Padding(
