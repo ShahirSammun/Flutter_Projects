@@ -1,4 +1,4 @@
-
+import 'package:get/get.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mobile_app4/data/models/auth_utility.dart';
 import 'package:mobile_app4/ui/screens/auth/login_screen.dart';
@@ -32,14 +32,17 @@ class _SplashScreenState extends State<SplashScreen> {
     Future.delayed(const Duration(seconds: 5)).then((_) async {
       final bool isLoggedIn = await AuthUtility.checkIfUserLoggedIn();
       if (mounted) {
-        Navigator.pushAndRemoveUntil(
-          context,
-          MaterialPageRoute(builder: (context) =>
-          isLoggedIn
-              ? const BottomNavBaseScreen()
-              : const LoginScreen()),
-              (route) => false,
+        Get.offAll(
+            isLoggedIn ? const BottomNavBaseScreen() : const LoginScreen()
         );
+        //Navigator.pushAndRemoveUntil(
+          //context,
+          //MaterialPageRoute(builder: (context) =>
+          //isLoggedIn
+              // const BottomNavBaseScreen()
+              //: const LoginScreen()),
+              //(route) => false,
+       //);
       }
     });
   }
