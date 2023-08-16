@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mobile_app4/ui/screens/splash_screen.dart';
+import 'package:mobile_app4/ui/state_managers/summary_count.controller.dart';
 import 'ui/state_managers/login_controller.dart';
 
 class TaskManagerApp extends StatefulWidget {
@@ -81,5 +82,6 @@ class ControllerBinding extends Bindings{
   @override
   void dependencies(){
     Get.put<LoginController>(LoginController());
+    Get.put<SummaryCountController>(SummaryCountController());
   }
 }
