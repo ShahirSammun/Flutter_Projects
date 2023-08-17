@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_app4/data/services/network_caller.dart';
-import 'package:mobile_app4/data/utils/urls.dart';
+import 'package:get/get.dart';
+import 'package:mobile_app4/ui/state_managers/signup_screen_controller.dart';
 import 'package:mobile_app4/ui/widgets/screen_background.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -18,7 +18,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController _passwordTEController = TextEditingController();
 
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
-  bool _signupInProgress = false;
+  /*bool _signupInProgress = false;
 
   Future<void> userSignup() async {
     _signupInProgress = true;
@@ -60,7 +60,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             const SnackBar(content: Text('Registration Failed')));
       }
     }
-  }
+  }*/
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -164,20 +164,47 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   const SizedBox(
                     height: 16,
                   ),
-                  SizedBox(
-                    width: double.infinity,
-                    child:Visibility(
-                      visible: _signupInProgress == false,
-                    replacement: const Center(child: CircularProgressIndicator()),
-                    child: ElevatedButton(
-                        onPressed: () {
-                          if (!_formkey.currentState!.validate()){
-                            return;
-                          }
-                          userSignup();
-                        },
-                        child: const Icon(Icons.arrow_forward_ios)),
-                  ),
+                  GetBuilder<SignUpScreenController>(
+                    builder: (signUpController) {
+                      return SizedBox(
+                        width: double.infinity,
+                        child: Visibility(
+                          visible: signUpController.signUpProgress == false,
+                          replacement: const Center(
+                            child: CircularProgressIndicator(),
+                          ),
+                          child: ElevatedButton(
+                            onPressed: () {
+                              if (!_formkey.currentState!.validate()) {
+                                return;
+                              }
+                              signUpController.userSignup(
+                                  _emailTEController.text.trim(),
+                                  _firstNameTEController.text.trim(),
+                                  _lastNameTEController.text.trim(),
+                                  _mobileNumberTEController.text.trim(),
+                                  _passwordTEController.text)
+                                  .then(
+                                    (result) {
+                                  if (result == true) {
+                                    Get.snackbar('Successful','SignUp successfully done');
+                                    _emailTEController.clear();
+                                    _firstNameTEController.clear();
+                                    _lastNameTEController.clear();
+                                    _mobileNumberTEController.clear();
+                                    _passwordTEController.clear();
+                                  } else {
+                                    Get.snackbar('Failed','Sign in failed');
+                                  }
+                                },
+                              );
+                            },
+                            child:
+                            const Icon(Icons.arrow_forward_ios_outlined),
+                          ),
+                        ),
+                      );
+                    },
                   ),
                   const SizedBox(
                     height: 16,

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_app4/data/models/network_response.dart';
-import 'package:mobile_app4/data/services/network_caller.dart';
-import 'package:mobile_app4/data/utils/urls.dart';
+import 'package:get/get.dart';
 import 'package:mobile_app4/ui/screens/auth/login_screen.dart';
 import 'package:mobile_app4/ui/screens/auth/reset_password.dart';
+import 'package:mobile_app4/ui/state_managers/otp_verification_controller.dart';
 import 'package:mobile_app4/ui/widgets/screen_background.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
@@ -19,7 +18,7 @@ class OtpVerificationScreen extends StatefulWidget {
 
 class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
   final TextEditingController _otpTEController = TextEditingController();
-  bool _otpVerificationInProgress = false;
+  /* bool _otpVerificationInProgress = false;
 
   Future<void> verifyOTP() async {
     _otpVerificationInProgress = true;
@@ -48,7 +47,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
             const SnackBar(content: Text('Otp verification failed!')));
       }
     }
-  }
+  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -114,20 +113,42 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                   const SizedBox(
                     height: 16,
                   ),
-                  SizedBox(
-                    width: double.infinity,
-                    child: Visibility(
-                      visible: _otpVerificationInProgress == false,
-                      replacement: const Center(
-                        child: CircularProgressIndicator(),
-                      ),
-                      child: ElevatedButton(
-                        onPressed: () {
-                          verifyOTP();
-                        },
-                        child: const Text('Verify'),
-                      ),
-                    ),
+                  GetBuilder<OtpVerificationController>(
+                    builder: (otpVerificationController) {
+                      return SizedBox(
+                        width: double.infinity,
+                        child: Visibility(
+                          visible: otpVerificationController
+                              .otpVerificationInProgress ==
+                              false,
+                          replacement: const Center(
+                            child: CircularProgressIndicator(),
+                          ),
+                          child: ElevatedButton(
+                            onPressed: () {
+                              otpVerificationController
+                                  .verifyOTP(widget.email, _otpTEController.text.trim())
+                                  .then(
+                                    (result) {
+                                  if (result == true) {
+                                    Get.to(
+                                      ResetPasswordScreen(
+                                        email: widget.email,
+                                        otp: _otpTEController.text,
+                                      ),
+                                    );
+                                  } else {
+                                    Get.snackbar(
+                                        'Failed!', 'OTP verification failed');
+                                  }
+                                },
+                              );
+                            },
+                            child: const Text('Verify'),
+                          ),
+                        ),
+                      );
+                    },
                   ),
                   const SizedBox(
                     height: 16,

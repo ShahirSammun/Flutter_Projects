@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mobile_app4/ui/screens/splash_screen.dart';
+import 'package:mobile_app4/ui/state_managers/otp_verification_controller.dart';
+import 'package:mobile_app4/ui/state_managers/reset_password_controller.dart';
+import 'package:mobile_app4/ui/state_managers/signup_screen_controller.dart';
 import 'package:mobile_app4/ui/state_managers/summary_count.controller.dart';
 import 'ui/state_managers/login_controller.dart';
 
@@ -83,5 +86,8 @@ class ControllerBinding extends Bindings{
   void dependencies(){
     Get.put<LoginController>(LoginController());
     Get.put<SummaryCountController>(SummaryCountController());
+    Get.put<OtpVerificationController>(OtpVerificationController());
+    Get.put<ResetPasswordController>(ResetPasswordController());
+    Get.put<SignUpScreenController>(SignUpScreenController());
   }
 }
